@@ -6,9 +6,19 @@
 class CTabla {
 private:
 	vector<CFila>* filas;
+	vector<string> col;
 	int nCol;
 
 public:
 	CTabla() {};
 	~CTabla() { };
+
+
+	
+
+
+
+
+
+
 };
