@@ -5,7 +5,7 @@
 #include <iostream>
 using namespace std;
 
-template <typename T, typename R = T, T NONE = 0> // 
+template <typename T, typename R = T> // 
 class AVLTree
 {
 	struct  Node
@@ -95,7 +95,7 @@ class AVLTree
 	// NUEVO
 	T find(Node* node, R val) {
 		if (node == nullptr) { 
-			return NONE;
+			return nullptr;
 		}else if (val = key(node->elem)) {
 			return node->elem;
 		}else if (val < key(node->elem)) {
@@ -107,19 +107,19 @@ class AVLTree
 	}
 	T greatertham(Node* node, R val){
 		if (node == nullptr) {
-			return NONE;
+			return nullptr;
 		}else if (val < key(node->elem)) {
-			return nodo->elem;
+			return node->elem;
 		}
 		return greatertham(node->right, val);
 	
 	}
 	T smallertham(Node* node, R val) {
 		if (node == nullptr) {
-			return NONE;
+			return nullptr;
 		}
 		else if (val > key(node->elem)) {
-			return nodo->elem;
+			return node->elem;
 		}
 		return smallertham(node->left, val);
 

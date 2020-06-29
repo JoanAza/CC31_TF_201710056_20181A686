@@ -9,10 +9,6 @@ public:
 	CFila(int idx) : idx(idx){}
 	~CFila(){}
 	int getIdx() { return idx; }
-	void setIdx(int _idx) { this->idx = _idx; }
-
+	void setIdx(int idx) { this->idx = idx; }
 };
-
-
-
 #endif // !__CFILA_H__
