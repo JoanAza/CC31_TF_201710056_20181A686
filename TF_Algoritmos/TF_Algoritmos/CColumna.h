@@ -20,6 +20,17 @@ public:
 	CColumna(bool numero = false, int filas = 0): numero(numero), filas(filas) {}
 	~CColumna(){}
 
+	bool getNumero(string str) {
+		for (int i = 0; i < str.length(); i++) 
+		{
+			if (isdigit(str[i]) == false) // isdigit se usa para verificar si el primer carácter en str es un dígito y, por lo tanto, un candidato válido para ser convertido por atoi en un valor entero.
+				return false;
+			return true;
+		}
+	}
+	string getData(int idx) {
+		return data[idx];
+	}
 
 	vector<int> Ordenar()
 	{
@@ -84,6 +95,12 @@ public:
 	}
 
 
+	bool sameString(string var, int ind) {
+		if (data[ind] == var)
+			return true;
+		else
+			return false;
+	}
 	bool getMayor(string var, int ind) {
 		if (data[ind].compare(var) > 0)
 			return true;
@@ -109,6 +126,8 @@ public:
 			return false;
 	}
 
+
+	bool getnoIn();//pendiente
 
 };
 	
