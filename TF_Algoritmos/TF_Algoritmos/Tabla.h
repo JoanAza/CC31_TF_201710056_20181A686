@@ -52,11 +52,44 @@ public:
 				colmap[colnames[j]]->inputData(dato);
 			}
 	}
+
+	void seleccionar(vector<string> coln)
+	{
+		map<string, CColumna*> colmaptemp;
+		for (auto col : colmap) 
+		{
+			for (auto colname : coln) 
+			{
+				if (col.first == colname) 
+				{
+					colmaptemp.insert(pair<string, CColumna*>(col.first, col.second));
+				}
+			}
+		}
+		colmap = colmaptemp;
+	}
 	
+	void mostrarTodo() 
+	{
+		for (auto col : colmap) 
+		{
+			cout << " " << col.first << "\t\t  ";
+		}
+		cout << endl;
+		for (auto fil : filas) 
+		{
+			for (auto col : colmap) 
+			{
+				cout << " " << col.second->getData(fil->getIdx()) << "\t\t      ";
+			}
+			cout << endl;
+		}
+	}
 
-
-
-
-
+	void copy(map<string, CColumna*> col, vector<CFila*> fil) 
+	{
+		colmap = col;
+		filas = fil;
+	}
 };
 #endif
