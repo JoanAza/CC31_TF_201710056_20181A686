@@ -11,14 +11,14 @@ class AVLTree
 	struct  Node
 	{
 		T elem;
-		Node* left;
-		Node* right;
+		Node* l;
+		Node* r;
 		int h;
-		Node(T elem) : elem(elem), left(nullptr), right(nullptr), h(0) {}
+		Node(T elem) : elem(elem), l(nullptr), r(nullptr), h(0) {}
 		static int height(Node* n) { return n == nullptr ? -1 : n->h; } // if abreviado  
 
 		void updateH() {
-			h = std::max(Node::height(left), Node::height(right)) + 1;
+			h = std::max(Node::height(l), Node::height(r)) + 1;
 		}
 
 	};
@@ -76,7 +76,7 @@ class AVLTree
 			n = new Node(e);
 			return;
 		}
-		else if (key(e) < key(n->e)) {
+		else if (key(e) < key(n->elem)) {
 			add(n->l, e);
 		}
 		else {
@@ -88,7 +88,7 @@ class AVLTree
 	void InOrder(Node* node, function<void(T)> in_order) {
 		if (node != nullptr) {
 			InOrder(node->l, in_order);
-			in_order(node->e);
+			in_order(node->elem);
 			InOrder(node->r, in_order);
 		}
 	}

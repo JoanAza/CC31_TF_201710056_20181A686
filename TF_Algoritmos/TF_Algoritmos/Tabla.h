@@ -91,5 +91,24 @@ public:
 		colmap = col;
 		filas = fil;
 	}
+
+	void index(string colname) 
+	{
+		AVLTree <CFila*, string >* t = new AVLTree<CFila*, string>([=](CFila* r) {return colmap[colname]->getData(r->getIdx());});
+		for (auto row : this->filas)
+		{
+			t->Add(row);
+		}
+		tree[colname] = t;
+	}
+
+	void InOrder(string colname)
+	{
+		vector<CFila*> filastemp;
+		auto prt = [&](CFila* a) {filastemp.push_back(new CFila(a->getIdx())); };
+
+		tree[colname]->InOrder(prt);
+		filas = filastemp;
+	}
 };
 #endif

@@ -1,6 +1,5 @@
-#include <iostream>
 #include "Tabla.h"
-using namespace std;
+
 
 void crearColumnas(vector<CTabla*>& tbl)
 {
@@ -37,9 +36,20 @@ void crearColumnas(vector<CTabla*>& tbl)
 	system("pause");
 }
 
-void indexar()
+void indexar(vector<CTabla*>& tbl)
 {
-
+	int i;
+	string name;
+	do 
+	{
+		cout << " Seleccionar una TABLA [del 1 al " << tbl.size() << "]: ";
+		cin >> i;
+		--i;
+	} while (i < 0 || i >= tbl.size());
+	cout << " Nombre de columna a indexar: ";
+	cin >> name;
+	tbl[i]->index(name);
+	tbl[i]->InOrder(name);
 }
 
 void seleccionar(vector<CTabla*>& tbl)
@@ -131,7 +141,7 @@ int main()
 			break;
 
 		case '2':
-			indexar();
+			indexar(tbl);
 			break;
 
 		case '3':
