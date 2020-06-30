@@ -92,6 +92,14 @@ public:
 		filas = fil;
 	}
 
+	void InOrder(string colname)
+	{
+		vector<CFila*> filastemp;
+		auto prt = [&](CFila* a) {filastemp.push_back(new CFila(a->getIdx())); };
+
+		tree[colname]->InOrder(prt);
+		filas = filastemp;
+	}
 	void index(string colname) 
 	{
 		AVLTree <CFila*, string >* t = new AVLTree<CFila*, string>([=](CFila* r) {return colmap[colname]->getData(r->getIdx());});
@@ -102,13 +110,6 @@ public:
 		tree[colname] = t;
 	}
 
-	void InOrder(string colname)
-	{
-		vector<CFila*> filastemp;
-		auto prt = [&](CFila* a) {filastemp.push_back(new CFila(a->getIdx())); };
-
-		tree[colname]->InOrder(prt);
-		filas = filastemp;
-	}
+	
 };
 #endif

@@ -162,6 +162,6 @@ int main()
 		}
 	} while (opcion != '7');
 
-	system("pause");
+	system("pause>0");
 	return 0;
 }
