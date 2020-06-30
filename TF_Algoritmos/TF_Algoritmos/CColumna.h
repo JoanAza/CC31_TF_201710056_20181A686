@@ -173,6 +173,18 @@ public:
 			return false;
 	}
 
+	bool getIn(string var, int ind) {
+		if (data[ind].find(var) != string::npos) // lee hasta el fin de la cadena y busca la palabra
+			return false;
+		else
+			return true;
+	}
+	bool getNoIn(string var, int ind) {
+		if (data[ind].find(var) == string::npos)// lee hasta el fin de la cadena y busca la palabra
+			return true;
+		else
+			return false;
+	}
 
 	// numeros
 	bool getIgualNumero(int var, int ind) {
