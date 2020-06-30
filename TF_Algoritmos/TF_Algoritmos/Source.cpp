@@ -1,7 +1,7 @@
 #include "Tabla.h"
 
 
-void crearColumnas(vector<CTabla*>& tbl)
+void crearTabla(vector<CTabla*>& tbl)
 {
 	string nomCol;
 	string datos;
@@ -50,14 +50,18 @@ void indexar(vector<CTabla*>& tbl)
 	cin >> name;
 	tbl[i]->index(name);
 	tbl[i]->InOrder(name);
+	cout << endl << "LA COLUMNA HA SIDO INDEXADA CORRECTAMENTE !!!" << endl;
+	cout << " ";
+	system("pause");
 }
 
 void seleccionar(vector<CTabla*>& tbl)
 {
 	int i;
 	char op;
-	string name;
-	do {
+
+	do 
+	{
 		cout << " Seleccionar una TABLA [del 1 al " << tbl.size() << "]: ";
 		cin >> i;
 		cout << endl;
@@ -67,7 +71,7 @@ void seleccionar(vector<CTabla*>& tbl)
 	string col;
 	vector<string>cols;
 	CTabla* nuevo = new CTabla();
-	nuevo->copy(tbl[0]->getColmap(), tbl[0]->getFilas());
+	nuevo->copy(tbl[i]->getColmap(), tbl[i]->getFilas());
 	int n;
 
 	cout << endl << " Desea seleccionar columnas?" << endl << " S para SI // N para NO: ";
@@ -75,10 +79,10 @@ void seleccionar(vector<CTabla*>& tbl)
 	op = toupper(op);
 	if (op == 'S')
 	{
-		cout << endl << " Cuantas columna desea seleccionar: ";
+		cout << endl << " Cuantas columnas desea seleccionar: ";
 		cin >> n;
 		for (int j = 0; j < n; j++) {
-			cout << " Ingrese el nombre de la columna: ";
+			cout << " Ingrese el nombre de la columna "<< j + 1 <<": ";
 			cin >> col;
 			cols.push_back(col);
 		}
@@ -90,9 +94,123 @@ void seleccionar(vector<CTabla*>& tbl)
 	system("pause");
 }
 
-void filtrar()
+void filtrar(vector<CTabla*>& tbl)
 {
+	int i;
+	char op;
 
+	do
+	{
+		cout << " Seleccionar una TABLA [del 1 al " << tbl.size() << "]: ";
+		cin >> i;
+		cout << endl;
+		--i;
+	} while (i < 0 || i >= tbl.size());
+
+	CTabla* nuevo = new CTabla();
+	nuevo->copy(tbl[i]->getColmap(), tbl[i]->getFilas());
+	string nombre, palabra;
+	char c;
+	char op;
+	int n;
+	system("cls");
+	cout << "1. Mayor:" << endl
+		<< "2. Menor: " << endl
+		<< "3. Igual a: " << endl
+		<< "4. Inicia con: " << endl
+		<< "5. Finaliza con: " << endl
+		<< "6. Contenido en: " << endl
+		<< "7. No contenido en: " << endl
+		<< "Elige una opcion: ";
+
+	cin >> op;
+	cout << "Elegir columna: ";
+	cin.get();
+	getline(cin, nombre);
+	if (nuevo->colesnum(nombre)) 
+	{
+
+		switch (op) 
+		{
+
+		case '1':
+			cout << "Elegir numero: ";
+			cin >> n;
+			nuevo->Filtrar_Mayor_num(nombre, n);
+			break;
+		case '2':
+			cout << "Elegir numero: ";
+			cin >> n;
+			nuevo->Filtrar_Menor_num(nombre, n);
+		case '3':
+			cout << "Elegir numero: ";
+			cin >> n;
+			nuevo->Filtrar_Igual_num(nombre, n);
+			break;
+		case '4':
+			cout << "Elegir el numeros: ";
+			cin >> c;
+			nuevo->Filtrar_Empieza(nombre, c);
+			break;
+		case '5':
+			cout << "Elegir el numero: ";
+			cin >> c;
+			nuevo->Filtrar_Termino(nombre, c);
+			break;
+		case '6':
+			cout << "Elegir numero: ";
+			cin >> palabra;
+			nuevo->Filtrar_In(nombre, palabra);
+			break;
+		case '7':
+			cout << "Elegir numero: ";
+			cin >> palabra;
+			nuevo->Filtrar_NoIn(nombre, palabra);
+			break;
+		}
+	}
+	else 
+	{
+
+		switch (op) 
+		{
+
+		case '1':
+			cout << "Elegir palabra: ";
+			cin >> palabra;
+			nuevo->Filtrar_Mayor(nombre, palabra);
+			break;
+		case '2':
+			cout << "Elegir palabra: ";
+			cin >> palabra;
+			nuevo->Filtrar_Menor(nombre, palabra);
+		case '3':
+			cout << "Elegir palabra: ";
+			cin >> palabra;
+			nuevo->Filtrar_Igual(nombre, palabra);
+			break;
+		case '4':
+			cout << "Elegir el caracter: ";
+			cin >> c;
+			nuevo->Filtrar_Empieza(nombre, c);
+			break;
+		case '5':
+			cout << "Elegir el caracter: ";
+			cin >> c;
+			nuevo->Filtrar_Termino(nombre, c);
+			break;
+		case '6':
+			cout << "Elegir palabra: ";
+			cin >> palabra;
+			nuevo->Filtrar_In(nombre, palabra);
+			break;
+		case '7':
+			cout << "Elegir palabra: ";
+			cin >> palabra;
+			nuevo->Filtrar_NoIn(nombre, palabra);
+			break;
+		}
+	}
 }
 
 void ordenar()
@@ -137,7 +255,7 @@ int main()
 		switch (opcion)
 		{
 		case '1':
-			crearColumnas(tbl);
+			crearTabla(tbl);
 			break;
 
 		case '2':
@@ -162,6 +280,6 @@ int main()
 		}
 	} while (opcion != '7');
 
-	system("pause>0");
+	system("pause");
 	return 0;
 }

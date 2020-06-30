@@ -109,7 +109,5 @@ public:
 		}
 		tree[colname] = t;
 	}
-
-	
 };
 #endif
