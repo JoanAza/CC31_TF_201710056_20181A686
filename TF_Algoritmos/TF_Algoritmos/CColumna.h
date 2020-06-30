@@ -14,7 +14,7 @@ private:
 	bool numero;
 	int filas;
 	vector<string> data;
-	map<string, int> dato;
+	map<string, int> mDato;
 	vector<int> vfila;
 
 public:
@@ -30,11 +30,6 @@ public:
 			return true;
 		}
 	}
-	bool getNum()
-	{
-		return numero;
-	}
-
 	void isNum()
 	{
 		if (isNumber(data[0]))
@@ -46,15 +41,24 @@ public:
 			numero = false;
 		};
 	}
-
+	
 	void inputData(string dato)
 	{
 		data.push_back(dato);
 	}
-
 	string getData(int idx) 
 	{
 		return data[idx];
+	}
+	bool getNum()
+	{
+		return numero;
+	}
+
+	void showData() {
+		for (auto _data : data) {
+			cout << _data << end;
+		}
 	}
 
 	vector<int> sort()
@@ -73,7 +77,6 @@ public:
 		}
 		return vfila;
 	}
-
 	void quicksort(vector<string>& names, string min, string max) 
 	{
 		vector<string> tempData;
@@ -132,23 +135,22 @@ public:
 		}
 	}
 
-	bool sameString(string var, int ind) 
+	// letras
+	bool sameString(string var, int ind)  // para palbras
 	{
 		if (data[ind] == var)
 			return true;
 		else
 			return false;
 	}
-
-	bool getMayor(string var, int ind) 
+	bool getMayor(string var, int ind)  // palabras
 	{
 		if (data[ind].compare(var) > 0)
 			return true;
 		else
 			return false;
 	}
-
-	bool getMenor(string var, int ind) 
+	bool getMenor(string var, int ind)  // palabras
 	{
 		if (data[ind].compare(var) < 0)
 			return true;
@@ -163,7 +165,6 @@ public:
 		else
 			return false;
 	}
-
 	bool back(int ind, char c) 
 	{
 		if (data[ind].back() == c)
@@ -172,7 +173,31 @@ public:
 			return false;
 	}
 
-	bool getnoIn();//pendiente
+
+	// numeros
+	bool getIgualNumero(int var, int ind) {
+		if (stoi(data[ind]) == var)
+			return true;
+		else
+			return false;
+
+		/*return (stoi(data[ind]) == var ? return true : false);*/
+
+	}
+	bool getMayorNumero(int var, int ind) {
+		if (stoi(data[ind]) > ind)
+			return true;
+		else
+			return false;
+	}
+	bool getMenorNumero(int var, int ind) {
+		if (atoi(data[ind]) < var)
+			return true;
+		else
+			return false;
+	}
+
+
 
 };
 	
