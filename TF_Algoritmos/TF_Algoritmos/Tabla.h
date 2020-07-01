@@ -25,12 +25,10 @@ public:
 		colmap[colname]->isNum();
 		return colmap[colname]->getNum();
 	}
-
 	vector<CFila*> getFilas()
 	{
 		return filas;
 	};
-
 	map<string, CColumna*> getColmap() 
 	{
 		return colmap;
@@ -42,7 +40,6 @@ public:
 		colnames.push_back(nombre);
 		this->nCol = nCol;
 	}
-
 	void crearFila(string dato, int nFilas)
 	{
 		int i = --nFilas;
@@ -55,6 +52,44 @@ public:
 			}
 	}
 
+	void mostraColumnas() {
+		map<string, CColumna*> ::iterator it;
+		for (it = colmap.begin(); it != colmap.end(); it++) {
+			cout << it->first << "\t";
+		}
+	}
+	void mostraColumna(string nombreCol) {
+		if (colmap[nombreCol] != nullptr)
+			colmap[nombreCol]->showData();
+	}
+
+
+
+	void cargarTabla(string nombre, int ncol)
+	{
+		this->nCol = ncol;
+		ifstream data;
+		data.open(nombre);
+		string line;
+		getline(data, line);
+		stringstream ss(line);
+		for (int j = 0; j < ncol; j++)
+		{
+			getline(ss, line, ',');
+			colmap.insert(pair<string, CColumna*>(line, new CColumna()));
+			colnames.push_back(line);
+		}
+		int i = 0;
+		while (getline(data, line)) {
+			filas.push_back(new CFila(i));
+			stringstream ss(line);
+			for (int j = 0; j < ncol; j++){
+				getline(ss, line, ',');
+				colmap[colnames[j]]->inputData(line);
+			}
+		}
+
+	}
   	void GuardaTabla(string nombre) {
 		ofstream data;
 		int cont1 = 1;
@@ -78,23 +113,6 @@ public:
 			data << endl;
 		}
 	}
-
-	void seleccionar(vector<string> coln)
-	{
-		map<string, CColumna*> colmaptemp;
-		for (auto col : colmap) 
-		{
-			for (auto colname : coln) 
-			{
-				if (col.first == colname) 
-				{
-					colmaptemp.insert(pair<string, CColumna*>(col.first, col.second));
-				}
-			}
-		}
-		colmap = colmaptemp;
-	}
-	
 	void mostrarTodo() 
 	{
 		for (auto col : colmap) 
@@ -111,6 +129,24 @@ public:
 			cout << endl;
 		}
 	}
+	void seleccionar(vector<string> coln)
+	{
+		map<string, CColumna*> colmaptemp;
+		for (auto col : colmap) 
+		{
+			for (auto colname : coln) 
+			{
+				if (col.first == colname) 
+				{
+					colmaptemp.insert(pair<string, CColumna*>(col.first, col.second));
+				}
+			}
+		}
+		colmap = colmaptemp;
+	}
+	
+
+
 
 	void copy(map<string, CColumna*> col, vector<CFila*> fil) 
 	{
@@ -135,5 +171,6 @@ public:
 		}
 		tree[colname] = t;
 	}
+
 };
 #endif
