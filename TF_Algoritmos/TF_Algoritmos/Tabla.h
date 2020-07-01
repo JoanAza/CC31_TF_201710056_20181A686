@@ -5,6 +5,8 @@
 #include "CColumna.h"
 #include <vector>
 
+
+
 class CTabla 
 {
 private:
@@ -51,6 +53,30 @@ public:
 				getline(ss, dato, ',');
 				colmap[colnames[j]]->inputData(dato);
 			}
+	}
+
+	void GuardaTabla(string nombre) {
+		ofstream data;
+		int cont1 = 1;
+		int cont2 = 1;
+		for (auto col : colmap)	{
+			data << col.first;
+			if (cont1 < nCol)
+				data << ",";
+			cont1++;
+		}
+		data << endl;
+		
+		for (auto fil : filas){
+			cont2 = 1;
+			for (auto col : colmap){
+				data << col.second->getData(fil->getIdx());
+				if (cont2 < nCol)
+					data << ",";
+				cont1++;
+			}
+			data << endl;
+		}
 	}
 
 	void seleccionar(vector<string> coln)

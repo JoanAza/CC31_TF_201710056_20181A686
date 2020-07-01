@@ -56,8 +56,8 @@ public:
 	}
 
 	void showData() {
-		for (auto _data : data) {
-			cout << _data << end;
+		for (auto dat : data) {
+			cout << dat << endl;
 		}
 	}
 
@@ -203,7 +203,7 @@ public:
 			return false;
 	}
 	bool getMenorNumero(int var, int ind) {
-		if (atoi(data[ind]) < var)
+		if (stoi(data[ind]) < var)
 			return true;
 		else
 			return false;

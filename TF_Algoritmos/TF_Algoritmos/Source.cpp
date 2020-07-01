@@ -96,7 +96,7 @@ void seleccionar(vector<CTabla*>& tbl)
 
 void filtrar(vector<CTabla*>& tbl)
 {
-	int i;
+	/*int i;
 	char op;
 
 	do
@@ -210,7 +210,7 @@ void filtrar(vector<CTabla*>& tbl)
 			nuevo->Filtrar_NoIn(nombre, palabra);
 			break;
 		}
-	}
+	}*/
 }
 
 void ordenar()
@@ -267,7 +267,7 @@ int main()
 			break;
 
 		case '4':
-			filtrar();
+			//filtrar();
 			break;
 
 		case '5':
