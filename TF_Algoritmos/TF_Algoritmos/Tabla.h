@@ -55,7 +55,7 @@ public:
 			}
 	}
 
-	void GuardaTabla(string nombre) {
+  	void GuardaTabla(string nombre) {
 		ofstream data;
 		int cont1 = 1;
 		int cont2 = 1;
