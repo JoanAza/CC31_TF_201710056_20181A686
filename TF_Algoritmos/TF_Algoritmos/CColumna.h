@@ -55,26 +55,13 @@ public:
 		return numero;
 	}
 
-	void showData() {
-		for (auto dat : data) {
+	void showData() 
+	{
+		for (auto dat : data) 
+		{
 			cout << dat << endl;
 		}
 	}
-
-	vector<int> Ordenar() {
-		vector<string> datatmp = data;
-		quicksort(datatmp, datatmp[0], datatmp[datatmp.size() - 1]);
-		for (int i = 0; i < datatmp.size(); i++)
-		{
-			for (int j = 0; j < data.size(); j++)
-			{
-				vfila.push_back(j);
-			}
-		}
-		return vfila;
-	}
-
-
 
 	vector<int> sort()
 	{
@@ -173,14 +160,14 @@ public:
 			return false;
 	}
 
-	bool front(int ind, char c) 
+	bool front(char c, int ind) 
 	{
 		if (data[ind].front() == c)
 			return true;
 		else
 			return false;
 	}
-	bool back(int ind, char c) 
+	bool back(char c, int ind)
 	{
 		if (data[ind].back() == c)
 			return true;
@@ -188,13 +175,15 @@ public:
 			return false;
 	}
 
-	bool getContiene(string var, int ind) {
-		if (data[ind].find(var) != string::npos) // lee hasta el fin de la cadena y busca la palabra
+	bool getContiene(string var, int ind) 
+	{
+		if (data[ind].find(var) == string::npos) // lee hasta el fin de la cadena y busca la palabra
 			return false;
 		else
 			return true;
 	}
-	bool getNoContiene(string var, int ind) {
+	bool getNoContiene(string var, int ind) 
+	{
 		if (data[ind].find(var) == string::npos)// lee hasta el fin de la cadena y busca la palabra
 			return true;
 		else
@@ -202,39 +191,28 @@ public:
 	}
 
 	// numeros
-	bool getIgualNumero(int var, int ind) {
+	bool getIgualNumero(int var, int ind) 
+	{
 		if (stoi(data[ind]) == var)
 			return true;
 		else
 			return false;
 
 		/*return (stoi(data[ind]) == var ? return true : false);*/
-
 	}
-	bool getMayorNumero(int var, int ind) {
-		if (stoi(data[ind]) > ind)
+	bool getMayorNumero(int var, int ind) 
+	{
+		if (stoi(data[ind]) > var)
 			return true;
 		else
 			return false;
 	}
-	bool getMenorNumero(int var, int ind) {
+	bool getMenorNumero(int var, int ind) 
+	{
 		if (stoi(data[ind]) < var)
 			return true;
 		else
 			return false;
 	}
-
-
-
 };
-	
-
-
-
-
-
-
-
-
-
 #endif // !__CCOLUMNA_H__

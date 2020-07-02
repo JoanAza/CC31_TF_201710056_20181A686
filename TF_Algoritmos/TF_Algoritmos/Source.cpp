@@ -40,13 +40,16 @@ void indexar(vector<CTabla*>& tbl)
 {
 	int i;
 	string name;
+	
 	do 
 	{
 		cout << " Seleccionar una TABLA [del 1 al " << tbl.size() << "]: ";
 		cin >> i;
+		cout << endl;
 		--i;
 	} while (i < 0 || i >= tbl.size());
-	cout << " Nombre de columna a indexar: ";
+	tbl[i]->mostrarTodo();
+	cout << endl << " Nombre de columna a indexar: ";
 	cin >> name;
 	tbl[i]->index(name);
 	tbl[i]->InOrder(name);
@@ -94,128 +97,181 @@ void seleccionar(vector<CTabla*>& tbl)
 	system("pause");
 }
 
-void filtrar(CTabla*& tbl)
+void filtrar(vector<CTabla*>& tbl)
 {
-	string nombre, palabra;
-	char c;
-	char op;
-	int i;
-	
 	system("cls");
-	cout << "1. Mayor:" << endl
-		<< "2. Menor: " << endl
-		<< "3. Igual a: " << endl
-		<< "4. Inicia con: " << endl
-		<< "5. Finaliza con: " << endl
-		<< "6. Contenido en: " << endl
-		<< "7. No contenido en: " << endl
-		<< "Elige una opcion: ";
+	int i, n;
+	char op, opConsulta, c;
+	string nombre, palabra;
 
-	cin >> op;
-	cout << "Elegir columna: ";
-	cin.get();
-	getline(cin, nombre);
-	if (tbl->colesnum(nombre)) 
+	do
 	{
-
-		switch (op) 
+		do
 		{
+			cout << " Seleccionar una TABLA [del 1 al " << tbl.size() << "]: ";
+			cin >> i;
+			cout << endl;
+			--i;
+		} while (i < 0 || i >= tbl.size());
+		tbl[i]->mostrarTodo();
 
-		case '1':
-			cout << "Elegir numero: ";
-			cin >> i;
-			tbl->Filtra_Mayor_Num(nombre, i);
-			break;
-		case '2':
-			cout << "Elegir numero: ";
-			cin >> i;
-			tbl->Filtra_Menor_Num(nombre, i);
-		case '3':
-			cout << "Elegir numero: ";
-			cin >> i;
-			tbl->Filtra_Igual_Num(nombre, i);
-			break;
-		case '4':
-			cout << "Elegir el numeros: ";
-			cin >> c;
-			tbl->Filtra_Empieza(nombre, c);
-			break;
-		case '5':
-			cout << "Elegir el numero: ";
-			cin >> c;
-			tbl->Filtra_Termina(nombre, c);
-			break;
-		case '6':
-			cout << "Elegir numero: ";
-			cin >> palabra;
-			tbl->Filtra_Contiene(nombre, palabra);
-			break;
-		case '7':
-			cout << "Elegir numero: ";
-			cin >> palabra;
-			tbl->Filtra_No_Contiene(nombre, palabra);
-			break;
-		}
-	}
-	else 
-	{
+		cout << endl << " 1. Mayor:" << endl
+			<< " 2. Menor: " << endl
+			<< " 3. Igual a: " << endl
+			<< " 4. Inicia con: " << endl
+			<< " 5. Finaliza con: " << endl
+			<< " 6. Contenido en: " << endl
+			<< " 7. No contenido en: " << endl
+			<< endl << " Elige una opcion: ";
 
-		switch (op) 
+		cin >> op;
+		cout << " Elige una columna: ";
+		cin.get();
+		getline(cin, nombre);
+
+		CTabla* nuevo = new CTabla();
+		nuevo->copy(tbl[i]->getColmap(), tbl[i]->getFilas());
+		if (nuevo->colesnum(nombre))
 		{
-
-		case '1':
-			cout << "Elegir palabra: ";
-			cin >> palabra;
-			tbl->Filtra_Mayor_letras(nombre, palabra);
-			break;
-		case '2':
-			cout << "Elegir palabra: ";
-			cin >> palabra;
-			tbl->Filtra_Menor_letras(nombre, palabra);
-		case '3':
-			cout << "Elegir palabra: ";
-			cin >> palabra;
-			tbl->Filtra_Igual_letras(nombre, palabra);
-			break;
-		case '4':
-			cout << "Elegir el caracter: ";
-			cin >> c;
-			tbl->Filtra_Empieza(nombre, c);
-			break;
-		case '5':
-			cout << "Elegir el caracter: ";
-			cin >> c;
-			tbl->Filtra_Termina(nombre, c);
-			break;
-		case '6':
-			cout << "Elegir palabra: ";
-			cin >> palabra;
-			tbl->Filtra_Contiene(nombre, palabra);
-			break;
-		case '7':
-			cout << "Elegir palabra: ";
-			cin >> palabra;
-			tbl->Filtra_No_Contiene(nombre, palabra);
-			break;
+			switch (op)
+			{
+			case '1':
+				cout << " Ingrese un numero: ";
+				cin >> n;
+				nuevo->Filtra_Mayor_Num(nombre, n);
+				system("cls");
+				nuevo->mostrarTodo();
+				break;
+			case '2':
+				cout << " Ingrese un numero: ";
+				cin >> n;
+				nuevo->Filtra_Menor_Num(nombre, n);
+				system("cls");
+				nuevo->mostrarTodo();
+				break;
+			case '3':
+				cout << " Ingrese un numero: ";
+				cin >> n;
+				nuevo->Filtra_Igual_Num(nombre, n);
+				system("cls");
+				nuevo->mostrarTodo();
+				break;
+			case '4':
+				cout << " Ingrese un numero: ";
+				cin >> c;
+				nuevo->Filtra_Empieza(nombre, c);
+				system("cls");
+				nuevo->mostrarTodo();
+				break;
+			case '5':
+				cout << " Ingrese un numero: ";
+				cin >> c;
+				nuevo->Filtra_Termina(nombre, c);
+				system("cls");
+				nuevo->mostrarTodo();
+				break;
+			case '6':
+				cout << " Ingrese un numero: ";
+				cin >> palabra;
+				nuevo->Filtra_Contiene(nombre, palabra);
+				system("cls");
+				nuevo->mostrarTodo();
+				break;
+			case '7':
+				cout << " Ingrese un numero: ";
+				cin >> palabra;
+				nuevo->Filtra_No_Contiene(nombre, palabra);
+				system("cls");
+				nuevo->mostrarTodo();
+				break;
+			}
 		}
-	}
+
+		else
+		{
+			switch (op)
+			{
+			case '1':
+				cout << " Ingrese una palabra o letra: ";
+				cin >> palabra;
+				nuevo->Filtra_Mayor_letras(nombre, palabra);
+				system("cls");
+				nuevo->mostrarTodo();
+				break;
+			case '2':
+				cout << " Ingrese una palabra o letra: ";
+				cin >> palabra;
+				nuevo->Filtra_Menor_letras(nombre, palabra);
+				system("cls");
+				nuevo->mostrarTodo();
+				break;
+			case '3':
+				cout << " Ingrese una palabra o letra: ";
+				cin >> palabra;
+				nuevo->Filtra_Igual_letras(nombre, palabra);
+				system("cls");
+				nuevo->mostrarTodo();
+				break;
+			case '4':
+				cout << " Ingrese una palabra o letra: ";
+				cin >> c;
+				nuevo->Filtra_Empieza(nombre, c);
+				system("cls");
+				nuevo->mostrarTodo();
+				break;
+			case '5':
+				cout << " Ingrese una palabra o letra: ";
+				cin >> c;
+				nuevo->Filtra_Termina(nombre, c);
+				system("cls");
+				nuevo->mostrarTodo();
+				break;
+			case '6':
+				cout << " Ingrese una palabra o letra: ";
+				cin >> palabra;
+				nuevo->Filtra_Contiene(nombre, palabra);
+				system("cls");
+				nuevo->mostrarTodo();
+				break;
+			case '7':
+				cout << " Ingrese una palabra o letra: ";
+				cin >> palabra;
+				nuevo->Filtra_No_Contiene(nombre, palabra);
+				system("cls");
+				nuevo->mostrarTodo();
+				break;
+			}
+		}
+		cout << endl << endl << " Desea realizar otra consulta ?";
+		cout << " S para SI // N para NO: ";
+		cin >> opConsulta;
+		opConsulta = toupper(opConsulta);
+		system("cls");
+	} while (opConsulta != 'N');
+	
+	cout << " ";
+	system("pause");
 }
 
 void ordenar(vector<CTabla*>& tbl)
 {
+	system("cls");
 	int i;
 	string name;
 	do
 	{
-		cout << "Tablas dispobiles: [1 -" << tbl.size() << "]";
+		cout << " Seleccionar una TABLA [del 1 al " << tbl.size() << "]: ";
 		cin >> i;
+		cout << endl;
 		--i;
 
-	} while (i < 0 == i >= tbl.size());
-
-	cout << "Nombre de columna a ordenar:";
+	} while (i < 0 || i >= tbl.size());
+	cout << endl << " Ingrese el nombre de columna a ordenar:";
 	cin >> name;
 	tbl[i]->Ordenar(name);
+	tbl[i]->mostrarTodo();
+	cout << " ";
+	system("pause");
 }
 
 void exportar(vector<CTabla*>& tbl)
@@ -224,15 +280,17 @@ void exportar(vector<CTabla*>& tbl)
 	string name;
 	do
 	{
-		cout << "Tabla disponibles: [1 -" << tbl.size() << "]";
+		cout << " Seleccionar una TABLA [del 1 al " << tbl.size() << "]: ";
 		cin >> i;
+		cout << endl;
 		--i;
 	} while(i < 0  || i >= tbl.size());
-	cout << "Nombre de la Nueva tabla: "; 
+	tbl[i]->mostrarTodo();
+	cout << endl << " Nombre de la Nueva tabla: "; 
 	cin >> name;
 	tbl[i]->GuardaTabla(name);
+	cout << endl << endl <<  "ARCHIVO CREADO CORRECTAMENTE !!";
 }
-
 
 void menu() 
 {
@@ -277,7 +335,7 @@ int main()
 			break;
 
 		case '4':
-		//	filtrar(tbl);
+			filtrar(tbl);
 			break;
 
 		case '5':
@@ -289,7 +347,6 @@ int main()
 			break;
 		}
 	} while (opcion != '7');
-
 	system("pause");
 	return 0;
 }
