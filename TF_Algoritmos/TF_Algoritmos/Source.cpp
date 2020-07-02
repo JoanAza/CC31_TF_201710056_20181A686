@@ -122,9 +122,14 @@ void filtrar(vector<CTabla*>& tbl)
 			<< " 5. Finaliza con: " << endl
 			<< " 6. Contenido en: " << endl
 			<< " 7. No contenido en: " << endl
+			<< " 8. Volver al menu " << endl
 			<< endl << " Elige una opcion: ";
 
 		cin >> op;
+		if (op == '8')
+		{
+			break;
+		}
 		cout << " Elige una columna: ";
 		cin.get();
 		getline(cin, nombre);
@@ -141,6 +146,7 @@ void filtrar(vector<CTabla*>& tbl)
 				nuevo->Filtra_Mayor_Num(nombre, n);
 				system("cls");
 				nuevo->mostrarTodo();
+				tbl.push_back(nuevo);
 				break;
 			case '2':
 				cout << " Ingrese un numero: ";
@@ -148,6 +154,7 @@ void filtrar(vector<CTabla*>& tbl)
 				nuevo->Filtra_Menor_Num(nombre, n);
 				system("cls");
 				nuevo->mostrarTodo();
+				tbl.push_back(nuevo);
 				break;
 			case '3':
 				cout << " Ingrese un numero: ";
@@ -155,6 +162,7 @@ void filtrar(vector<CTabla*>& tbl)
 				nuevo->Filtra_Igual_Num(nombre, n);
 				system("cls");
 				nuevo->mostrarTodo();
+				tbl.push_back(nuevo);
 				break;
 			case '4':
 				cout << " Ingrese un numero: ";
@@ -162,6 +170,7 @@ void filtrar(vector<CTabla*>& tbl)
 				nuevo->Filtra_Empieza(nombre, c);
 				system("cls");
 				nuevo->mostrarTodo();
+				tbl.push_back(nuevo);
 				break;
 			case '5':
 				cout << " Ingrese un numero: ";
@@ -169,6 +178,7 @@ void filtrar(vector<CTabla*>& tbl)
 				nuevo->Filtra_Termina(nombre, c);
 				system("cls");
 				nuevo->mostrarTodo();
+				tbl.push_back(nuevo);
 				break;
 			case '6':
 				cout << " Ingrese un numero: ";
@@ -176,6 +186,7 @@ void filtrar(vector<CTabla*>& tbl)
 				nuevo->Filtra_Contiene(nombre, palabra);
 				system("cls");
 				nuevo->mostrarTodo();
+				tbl.push_back(nuevo);
 				break;
 			case '7':
 				cout << " Ingrese un numero: ";
@@ -183,6 +194,7 @@ void filtrar(vector<CTabla*>& tbl)
 				nuevo->Filtra_No_Contiene(nombre, palabra);
 				system("cls");
 				nuevo->mostrarTodo();
+				tbl.push_back(nuevo);
 				break;
 			}
 		}
@@ -197,6 +209,7 @@ void filtrar(vector<CTabla*>& tbl)
 				nuevo->Filtra_Mayor_letras(nombre, palabra);
 				system("cls");
 				nuevo->mostrarTodo();
+				tbl.push_back(nuevo);
 				break;
 			case '2':
 				cout << " Ingrese una palabra o letra: ";
@@ -204,6 +217,7 @@ void filtrar(vector<CTabla*>& tbl)
 				nuevo->Filtra_Menor_letras(nombre, palabra);
 				system("cls");
 				nuevo->mostrarTodo();
+				tbl.push_back(nuevo);
 				break;
 			case '3':
 				cout << " Ingrese una palabra o letra: ";
@@ -211,6 +225,7 @@ void filtrar(vector<CTabla*>& tbl)
 				nuevo->Filtra_Igual_letras(nombre, palabra);
 				system("cls");
 				nuevo->mostrarTodo();
+				tbl.push_back(nuevo);
 				break;
 			case '4':
 				cout << " Ingrese una palabra o letra: ";
@@ -218,6 +233,7 @@ void filtrar(vector<CTabla*>& tbl)
 				nuevo->Filtra_Empieza(nombre, c);
 				system("cls");
 				nuevo->mostrarTodo();
+				tbl.push_back(nuevo);
 				break;
 			case '5':
 				cout << " Ingrese una palabra o letra: ";
@@ -225,6 +241,7 @@ void filtrar(vector<CTabla*>& tbl)
 				nuevo->Filtra_Termina(nombre, c);
 				system("cls");
 				nuevo->mostrarTodo();
+				tbl.push_back(nuevo);
 				break;
 			case '6':
 				cout << " Ingrese una palabra o letra: ";
@@ -232,6 +249,7 @@ void filtrar(vector<CTabla*>& tbl)
 				nuevo->Filtra_Contiene(nombre, palabra);
 				system("cls");
 				nuevo->mostrarTodo();
+				tbl.push_back(nuevo);
 				break;
 			case '7':
 				cout << " Ingrese una palabra o letra: ";
@@ -239,6 +257,7 @@ void filtrar(vector<CTabla*>& tbl)
 				nuevo->Filtra_No_Contiene(nombre, palabra);
 				system("cls");
 				nuevo->mostrarTodo();
+				tbl.push_back(nuevo);
 				break;
 			}
 		}
@@ -289,7 +308,9 @@ void exportar(vector<CTabla*>& tbl)
 	cout << endl << " Nombre de la Nueva tabla: "; 
 	cin >> name;
 	tbl[i]->GuardaTabla(name);
-	cout << endl << endl <<  "ARCHIVO CREADO CORRECTAMENTE !!";
+	cout << endl << endl <<  " ARCHIVO CREADO CORRECTAMENTE !!";
+	cout << " ";
+	system("pause");
 }
 
 void menu() 
