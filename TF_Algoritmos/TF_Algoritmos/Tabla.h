@@ -146,14 +146,11 @@ public:
 	}
 	
 
-
-
 	void copy(map<string, CColumna*> col, vector<CFila*> fil) 
 	{
 		colmap = col;
 		filas = fil;
 	}
-
 	void InOrder(string colname)
 	{
 		vector<CFila*> filastemp;
@@ -170,6 +167,143 @@ public:
 			t->Add(row);
 		}
 		tree[colname] = t;
+	}
+	void Ordenar(string colname) {
+		vector<int> filastpm;
+		filastpm = colmap[colname]->Ordenar();
+		for (int j = 0; j < filas.size(); j++)
+		{
+			filas[j]->setIdx(filastpm[j]);
+
+		}
+	}
+
+	// funciones Numero
+
+	void Filtra_Mayor_Num(string nCol, int num) {
+		vector<string> temp;
+		vector <CFila*> filtemp;
+		for (auto fil : filas)
+		{
+			if(colmap[nCol]->getMayorNumero(num, fil->getIdx()) == true){
+				temp.push_back(colmap[nCol]->getData(fil->getIdx()));
+				filtemp.push_back(fil);
+			}
+		}
+		this->filas = filtemp;
+	}
+	void Filtra_Menor_Num(string nCol, int num) {
+		vector<string> temp;
+		vector <CFila*> filtemp;
+		for (auto fil : filas)
+		{
+			if (colmap[nCol]->getMenorNumero(num, fil->getIdx()) == true) {
+				temp.push_back(colmap[nCol]->getData(fil->getIdx()));
+				filtemp.push_back(fil);
+			}
+		}
+		this->filas = filtemp;
+	}
+	void Filtra_Igual_Num(string nCol, int num) {
+		vector<string> temp;
+		vector <CFila*> filtemp;
+		for (auto fil : filas)
+		{
+			if (colmap[nCol]->getIgualNumero(num, fil->getIdx()) == true) {
+				temp.push_back(colmap[nCol]->getData(fil->getIdx()));
+				filtemp.push_back(fil);
+			}
+		}
+		this->filas = filtemp;
+	}
+
+	// funciones Letras
+	void Filtra_Mayor_letras(string nCol, string letra) {
+		vector<string> temp;
+		vector <CFila*> filtemp;
+		for (auto fil : filas)
+		{
+			if (colmap[nCol]->getMayorLetra(letra, fil->getIdx()) == true) {
+				temp.push_back(colmap[nCol]->getData(fil->getIdx()));
+				filtemp.push_back(fil);
+			}
+		}
+		this->filas = filtemp;
+	}
+	void Filtra_Menor_letras(string nCol, string letra) {
+		vector<string> temp;
+		vector <CFila*> filtemp;
+		for (auto fil : filas)
+		{
+			if (colmap[nCol]->getMenorLetra(letra, fil->getIdx()) == true) {
+				temp.push_back(colmap[nCol]->getData(fil->getIdx()));
+				filtemp.push_back(fil);
+			}
+		}
+		this->filas = filtemp;
+	}
+	void Filtra_Igual_letras(string nCol, string letra) {
+		vector<string> temp;
+		vector <CFila*> filtemp;
+		for (auto fil : filas)
+		{
+			if (colmap[nCol]->getIgualLetra(letra, fil->getIdx()) == true) {
+				temp.push_back(colmap[nCol]->getData(fil->getIdx()));
+				filtemp.push_back(fil);
+			}
+		}
+		this->filas = filtemp;
+	}
+
+	// funcion especial
+
+	void Filtra_Empieza(string nCol, char c) {
+		vector<string> temp;
+		vector <CFila*> filtemp;
+		for (auto fil : filas)
+		{
+			if (colmap[nCol]->front(c, fil->getIdx()) == true) {
+				temp.push_back(colmap[nCol]->getData(fil->getIdx()));
+				filtemp.push_back(fil);
+			}
+		}
+		this->filas = filtemp;
+	}
+	void Filtra_Termina(string nCol, char c) {
+		vector<string> temp;
+		vector <CFila*> filtemp;
+		for (auto fil : filas)
+		{
+			if (colmap[nCol]->back(c, fil->getIdx()) == true) {
+				temp.push_back(colmap[nCol]->getData(fil->getIdx()));
+				filtemp.push_back(fil);
+			}
+		}
+		this->filas = filtemp;
+	}
+	void Filtra_Contiene(string nCol, string var) {
+		vector<string> temp;
+		vector <CFila*> filtemp;
+		for (auto fil : filas)
+		{
+			if (colmap[nCol]->getContiene(var, fil->getIdx()) == true) {
+				temp.push_back(colmap[nCol]->getData(fil->getIdx()));
+				filtemp.push_back(fil);
+			}
+		}
+		this->filas = filtemp;
+	}
+	void Filtra_No_Contiene(string nCol, string var) {
+		vector<string> temp;
+		vector <CFila*> filtemp;
+		for (auto fil : filas)
+		{
+			if (colmap[nCol]->getNoContiene(var, fil->getIdx()) == true) {
+				temp.push_back(colmap[nCol]->getData(fil->getIdx()));
+				filtemp.push_back(fil);
+			}
+		}
+		this->filas = filtemp;
 	}
 
 };

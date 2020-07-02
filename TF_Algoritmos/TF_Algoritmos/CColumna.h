@@ -61,6 +61,21 @@ public:
 		}
 	}
 
+	vector<int> Ordenar() {
+		vector<string> datatmp = data;
+		quicksort(datatmp, datatmp[0], datatmp[datatmp.size() - 1]);
+		for (int i = 0; i < datatmp.size(); i++)
+		{
+			for (int j = 0; j < data.size(); j++)
+			{
+				vfila.push_back(j);
+			}
+		}
+		return vfila;
+	}
+
+
+
 	vector<int> sort()
 	{
 		vector<string> datatmp = data;
@@ -136,21 +151,21 @@ public:
 	}
 
 	// letras
-	bool sameString(string var, int ind)  // para palbras
+	bool getIgualLetra(string var, int ind)  // para palbras
 	{
 		if (data[ind] == var)
 			return true;
 		else
 			return false;
 	}
-	bool getMayor(string var, int ind)  // palabras
+	bool getMayorLetra(string var, int ind)  // palabras
 	{
 		if (data[ind].compare(var) > 0)
 			return true;
 		else
 			return false;
 	}
-	bool getMenor(string var, int ind)  // palabras
+	bool getMenorLetra(string var, int ind)  // palabras
 	{
 		if (data[ind].compare(var) < 0)
 			return true;
@@ -173,13 +188,13 @@ public:
 			return false;
 	}
 
-	bool getIn(string var, int ind) {
+	bool getContiene(string var, int ind) {
 		if (data[ind].find(var) != string::npos) // lee hasta el fin de la cadena y busca la palabra
 			return false;
 		else
 			return true;
 	}
-	bool getNoIn(string var, int ind) {
+	bool getNoContiene(string var, int ind) {
 		if (data[ind].find(var) == string::npos)// lee hasta el fin de la cadena y busca la palabra
 			return true;
 		else
